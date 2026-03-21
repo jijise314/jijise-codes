@@ -1,20 +1,31 @@
 #include <stdio.h>
-#include "my_math.h"
+#include "my_fraction.h"
 
 int main() {
-	int n1, n2;
+	Fraction f1, f2, result;
+	char op;
 
-	printf("두 정수를 입력하세요 (예: 18 24): ");
-	if (scanf_s("%d %d", &n1, &n2) != 2) {
-		printf("잘못 입력 됬습니다. 두 정수를 입력해주세요\n");
-		return 1;
-	}
+	printf("수를 입력하세요 (예: 1/2 + 1/4): ");
 
-	int gcd = get_gcd(n1, n2);
-	int lcm = get_lcm(n1, n2);
+	f1 = scan_fraction();
 
-	printf("--결과--\n");
-	printf("GCD: %d, LCM: %d", gcd, lcm);
+	scanf_s(" %c", &op);
+    
+	f2 = scan_fraction();
 
-	return 0;
+    switch (op) {
+    case '+': result = add(f1, f2); break;
+    case '-': result = minus(f1, f2); break;
+    case '*': result = multiply(f1, f2); break;
+    case '/': result = divide(f1, f2); break;
+    default:
+        printf("\n잘못된 연산자입니다.\n");
+        return 1;
+    }
+    
+    printf("결과: ");
+    print_fraction(result);
+    printf("\n");
+
+    return 0;
 }
