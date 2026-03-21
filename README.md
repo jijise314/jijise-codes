@@ -1,4 +1,4 @@
-# jijise-codes
+# 분수 계산하기
 
 데이터
 
@@ -9,7 +9,6 @@ typedef struct {
     int num1; // 분자
     int num2; // 분모
 } Fraction;
-
 
 연산정의
 
