@@ -1,31 +1,48 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "my_fraction.h"
+#include "my_math.h"
 
-int main() {
-	Fraction f1, f2, result;
-	char op;
+int main(int c, char** v) {
+	if (c != 3) {
+		printf("실행 방법: %s <가로> <세로>\n", v[0]);
+		return 1;
+	}
+	Fraction width, height;
 
-	printf("수를 입력하세요 (예: 1/2 + 1/4): ");
+	char* slash1 = strchr(v[1], '/');
+	if (slash1 != NULL) {
+		width.num1 = atoi(v[1]);
+		width.num2 = atoi(slash1 + 1);
+	}
+	else {
+		width.num1 = atoi(v[1]);
+		width.num2 = 1;  
+	}
 
-	f1 = scan_fraction();
+	char* slash2 = strchr(v[2], '/');
+	if (slash2 != NULL) {
+		height.num1 = atoi(v[2]);
+		height.num2 = atoi(slash2 + 1);
+	}
+	else {
+		height.num1 = atoi(v[2]);
+		height.num2 = 1;
+	}
 
-	scanf_s(" %c", &op);
-    
-	f2 = scan_fraction();
+	Fraction sum = add(width, height);
+	Fraction two = { 2,1 };
+	Fraction perimeter = multiply(two, sum);
 
-    switch (op) {
-    case '+': result = add(f1, f2); break;
-    case '-': result = minus(f1, f2); break;
-    case '*': result = multiply(f1, f2); break;
-    case '/': result = divide(f1, f2); break;
-    default:
-        printf("\n잘못된 연산자입니다.\n");
-        return 1;
-    }
-    
-    printf("결과: ");
-    print_fraction(result);
-    printf("\n");
+	Fraction area = multiply(width, height);
 
-    return 0;
+	printf("perimeter: ");
+	print_fraction(perimeter);
+	printf("\t");
+
+	printf("area: ");
+	print_fraction(area);
+
+	return 0;
 }
