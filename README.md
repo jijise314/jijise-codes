@@ -3,6 +3,7 @@
 데이터
 
 num1 (int): 분수를 구성하는 분자
+
 num2 (int): 분수를 구성하는 분모 (0이 될 수 없음)
 
 typedef struct {
