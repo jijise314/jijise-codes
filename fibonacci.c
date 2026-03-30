@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "my_math.h"
+#include "my_fibonacci.h"
 
 int main() {
     long long fib_1 = 3;
