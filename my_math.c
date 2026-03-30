@@ -1,20 +1,21 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "my_math.h"
 
-int get_gcd(int a, int b) {
-	a = abs(a);
-	b = abs(b);
-	while (b) {
-		int temp = a % b;
-		a = b;
-		b = temp;
-	}
-	return a;
+long long get_gcd(long long a, long long b) {
+    a = llabs(a);
+    b = llabs(b);
+    while (b) {
+        long long temp = a % b;
+        a = b;
+        b = temp;
+    }
+    return a;
 }
 
-int get_lcm(int a, int b) {
-	if (a == 0 || b == 0) return 0;
+long long get_lcm(long long a, long long b) {
+    if (a == 0 || b == 0) return 0;
 
-	int gcd = get_gcd(a, b);
-	return abs((a / gcd) * b);
+    long long gcd = get_gcd(a, b);
+    return llabs((a / gcd) * b);
 }
