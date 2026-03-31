@@ -12,10 +12,3 @@ long long get_gcd(long long a, long long b) {
     }
     return a;
 }
-
-long long get_lcm(long long a, long long b) {
-    if (a == 0 || b == 0) return 0;
-
-    long long gcd = get_gcd(a, b);
-    return llabs((a / gcd) * b);
-}
