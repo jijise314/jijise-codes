@@ -21,6 +21,8 @@
 
 따라서 현재 알고리즘 문맥에서 get_gcd의 시간 복잡도는 $O(n)$이 됩니다.
 
+---
+
 ## 프로파일링 사진
 <img width="1895" height="876" alt="image" src="https://github.com/user-attachments/assets/678d55c2-8fbc-4691-8fc2-0552414b6580" />
 
