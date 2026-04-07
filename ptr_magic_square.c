@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+//#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -7,7 +7,7 @@ int main() {
 	int N;
 
 	printf("마방진의 크기(홀수N)를 입력하세요: ");
-	if (scanf("%d", &N) != 1 || N % 2 == 0 || N <= 0)
+	if (scanf_s("%d", &N) != 1 || N % 2 == 0 || N <= 0)
 	{
 		printf("홀수를 입력하세요.");
 		return 1;
