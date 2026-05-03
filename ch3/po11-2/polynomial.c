@@ -65,9 +65,7 @@ polynomial* addPolynomial(polynomial* p1, polynomial* p2) {
 }
 
 void printPolynomial(polynomial* po) {
-	printf("Polynomial: \n");
-
+	printf("Polynomial: ");
 	printArrayList(po);
-
 	printf("\n");
 }

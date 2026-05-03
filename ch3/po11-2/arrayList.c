@@ -44,7 +44,7 @@ int sizeArrayList(arrayList* al) {
 
 int insertArrayList(arrayList* al,
 	int pos, elementArrayList item) {
-	if (pos < 0 || pos > al->size) {
+	if (pos < 0 || pos > al->size || isFullArrayList(al)) {
 		return 0;
 	}
 
@@ -76,9 +76,12 @@ elementArrayList deleteArrayList(
 }
 
 int initArrayList(arrayList* al) {
+	if (al == NULL) return 0;
+
 	for (int i = al->size - 1; i >= 0; i--) {
 		deleteArrayList(al, i);
 	}
+	return 1;
 }
 
 elementArrayList getItemArrayList(
@@ -98,7 +101,7 @@ int replaceItemArrayList(arrayList* al,
 }
 
 void printArrayList(arrayList* al) {
-	printf("Array List: ");
+	//printf("Array List: ");
 
 	for (int i = 0; i < al->size; i++) {
 		printf("(%d %d)", al->data[i].coef,
