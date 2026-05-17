@@ -32,7 +32,12 @@ int main() {
 
 		case 3: printf("\n추가할 위치와 정수를 입력하세요(순서-> 위치 정수) : ");
 			scanf("%d %d", &pos, &value);
-			insertAtLinkedList(myList, pos, (PointType) { value, value, NULL });
+			if (pos<0 || pos>sizeLinkedList(myList)) {
+				printf("잘못된 위치입니다.\n");
+			}
+			else {
+				insertAtLinkedList(myList, pos, (PointType) { value, value, NULL });
+			}
 			break;
 
 		case 4: printf("\n삭제할 위치를 입력하세요 : ");
@@ -41,7 +46,7 @@ int main() {
 				deleteAtLinkedList(myList, pos);
 			}
 			else {
-				printf("잘못된 위치입니다.");
+				printf("잘못된 위치입니다.\n");
 			}
 			break;
 
