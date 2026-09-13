@@ -40,7 +40,7 @@ void nesting_tree(const char* tree) {
     char children_c[100] = { 0 };
     int c_idx = 0;
 
-    printf("\n[트리 계층 구조 출력]\n");
+    printf("\n[트리 출력]\n");
 
     for (int i = 0; tree[i] != '\0'; i++) {
         char ch = tree[i];
