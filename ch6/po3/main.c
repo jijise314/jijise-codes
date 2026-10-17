@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <time.h>
-#include "mst.h"
+#include "graph.h"
 
 int main(void)
 {
