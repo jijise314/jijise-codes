@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "mst.h"
+#include "graph.h"
 
 static int randomWeight(void)
 {
