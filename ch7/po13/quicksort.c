@@ -1,50 +1,5 @@
-#include <stdlib.h>
-#include <time.h>
+#include "common.h"
 #include "quicksort.h"
-
-long long g_compare = 0;
-
-/* ===================== 메모리 측정 ===================== */
-uintptr_t g_stack_base = 0;
-uintptr_t g_stack_min = UINTPTR_MAX;
-size_t    g_heap_cur = 0;
-size_t    g_heap_peak = 0;
-
-/* 정렬 함수가 호출될 위치의 스택 주소를 기준으로 삼는다 */
-void mem_reset(void)
-{
-    volatile char here = 0;
-    g_stack_base = (uintptr_t)&here;
-    g_stack_min = g_stack_base;
-    g_heap_cur = 0;
-    g_heap_peak = 0;
-}
-
-size_t mem_stack_peak(void)
-{
-    return (size_t)(g_stack_base - g_stack_min);
-}
-
-void* tracked_malloc(size_t bytes)
-{
-    void* p = malloc(bytes);
-    if (p) {
-        g_heap_cur += bytes;
-        if (g_heap_cur > g_heap_peak) g_heap_peak = g_heap_cur;
-    }
-    return p;
-}
-
-void tracked_free(void* p, size_t bytes)
-{
-    if (p) { free(p); g_heap_cur -= bytes; }
-}
-
-static int LESS(int x, int y)
-{
-    g_compare++;
-    return x < y;
-}
 
 static void swap(int* a, int* b)
 {
@@ -52,12 +7,6 @@ static void swap(int* a, int* b)
 }
 
 /* ===================== 피벗 선택 ===================== */
-int rand_range(int range)
-{
-    unsigned int r = ((unsigned int)rand() << 15) | (unsigned int)rand();
-    return (int)(r % (unsigned int)range);
-}
-
 /* 첫 번째, 가운데, 마지막 원소의 중앙값 위치 반환 */
 static int median_of_three(int a[], int low, int high)
 {
@@ -76,6 +25,7 @@ static int median_of_three(int a[], int low, int high)
     }
 }
 
+/* 선택한 피벗을 a[low]로 옮긴다 */
 static void select_pivot(int a[], int low, int high, PivotType type)
 {
     int p = low;
@@ -149,27 +99,4 @@ void quick_sort_iterative(int a[], int n, PivotType type, int* stack)
         if (p + 1 < high) { stack[++top] = p + 1; stack[++top] = high; }
         if (low < p - 1) { stack[++top] = low;   stack[++top] = p - 1; }
     }
-}
-
-/* ===================== 유틸리티 ===================== */
-void generate_data(int a[], int n)
-{
-    int i;
-    for (i = 0; i < n; i++)
-        a[i] = rand_range(100000);
-}
-
-int is_sorted(const int a[], int n)
-{
-    int i;
-    for (i = 1; i < n; i++)
-        if (a[i - 1] > a[i]) return 0;
-    return 1;
-}
-
-double now_ms(void)
-{
-    struct timespec ts;
-    timespec_get(&ts, TIME_UTC);
-    return ts.tv_sec * 1000.0 + ts.tv_nsec / 1.0e6;
 }
