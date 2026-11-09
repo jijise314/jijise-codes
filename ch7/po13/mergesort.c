@@ -1,13 +1,5 @@
-#include <stdlib.h>
-#include "quicksort.h"
+#include "common.h"
 #include "mergesort.h"
-
-/* 데이터 값 비교 */
-static int LESS(int x, int y)
-{
-    g_compare++;
-    return x < y;
-}
 
 static void merge(int a[], int tmp[], int low, int mid, int high)
 {
