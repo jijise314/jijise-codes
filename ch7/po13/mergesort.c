@@ -2,7 +2,7 @@
 #include "quicksort.h"
 #include "mergesort.h"
 
-/* 데이터 값 비교 (퀵 정렬과 같은 g_compare 카운터 사용) */
+/* 데이터 값 비교 */
 static int LESS(int x, int y)
 {
     g_compare++;
